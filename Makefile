@@ -1,16 +1,11 @@
 OBJFILES := 
-FLAGS    := -Werror -Wall -Wextra -g -I lib
+CFLAGS   := -Werror -Wall -Wextra -g -I lib
 LIBFT_A  := lib/libft/libft.a
 HEADER   := push_swap.h
 NAME     := push_swap
 
-ifeq ($(OS), Windows_NT)
-	CC = gcc
-	NAME := push_swap.exe
-endif
-
 $(NAME) : $(OBJFILES) $(LIBFT_A) $(HEADER)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJFILES) $(LIBFT_A) $(MLX42_A)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJFILES) $(LIBFT_A)
 
 all : $(NAME)
 
@@ -26,6 +21,6 @@ $(LIBFT_A) :
 	make -C lib/libft
 
 %.o : %.c $(HEADER)
-	$(CC) -c $(FLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 .PHONY : clean fclean re
