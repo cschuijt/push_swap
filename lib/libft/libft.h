@@ -160,4 +160,15 @@ int		ft_put_nbr_base(size_t nbr, char *base);
 // Returns the amount of occurrences of character c in string str.
 size_t	ft_strchrc(char *str, char c);
 
+// @brief Frees each element in a NULL-terminated array of pointers, then
+// frees the array itself. Does not set array pointer to NULL.
+void	free_array(void **array);
+
+// @brief Prints "Error\n" on stderr, followed by a message, then exits the
+// program with code 1.
+void	exit_message(char *msg);
+
+// @brief Calls perror with msg, then exits the program with code 1.
+void	exit_perror(char *msg);
+
 #endif

@@ -8,7 +8,8 @@ OBJFILES := ft_atoi.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o \
 					ft_putnbr_base.o ft_lstadd_back.o ft_lstadd_front.o ft_lstclear.o \
 					ft_lstdelone.o ft_lstiter.o ft_lstlast.o ft_lstmap.o ft_lstnew.o \
 					ft_lstsize.o ft_putnbr_base.o ft_printf.o print_functions.o \
-					get_next_line.o get_next_line_utils.o ft_strchrc.o
+					get_next_line.o get_next_line_utils.o ft_strchrc.o exit_message.o \
+					exit_perror.o free_array.o
 FLAGS = -Werror -Wall -Wextra
 NAME = libft.a
 
@@ -25,7 +26,7 @@ clean :
 fclean :
 	rm -f $(NAME) $(OBJFILES)
 
-%.o : %.c
-	$(CC) -c $(FLAGS) -o $@ $^
+%.o : %.c libft.h
+	$(CC) -c $(FLAGS) -o $@ $<
 
 .PHONY : clean fclean re
