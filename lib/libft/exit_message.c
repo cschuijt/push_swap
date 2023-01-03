@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 // @brief Prints "Error\n" on stderr, followed by a message, then exits the
 // program with code 1.

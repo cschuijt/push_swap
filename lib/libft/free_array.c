@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
 // @brief Frees each element in a NULL-terminated array of pointers, then
 // frees the array itself. Does not set array pointer to NULL.
