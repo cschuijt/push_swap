@@ -72,12 +72,23 @@ typedef enum e_target {
 
 void	initialize_stack(t_push_swap *push_swap, char **input);
 
-//== PUSH_SWAP INSTRUCTIONS ==//
+//== PUSH_SWAP INSTRUCTION HANDLERS ==//
+// These functions are how operations are called on the stack and logged
+// for printing later on.
 
 void	swap(t_push_swap *push_swap, int target);
 void	push(t_push_swap *push_swap, int target);
 void	rotate(t_push_swap *push_swap, int target);
 void	reverse_rotate(t_push_swap *push_swap, int target);
+
+//== PUSH_SWAP INSTRUCTION EXECUTERS ==//
+// These functions actually perform the instructions, changing the order and
+// updating the pointers.
+
+void	perform_swap(t_item **stack);
+void	perform_push(t_item **src, t_item **dest);
+void	perform_rotate(t_item **stack);
+void	perform_reverse_rotate(t_item **stack);
 
 //== LOGGING AND PRINTING ==//
 
