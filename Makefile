@@ -1,4 +1,5 @@
-OBJFILES := main.o instructions.o initialize_stack.o
+OBJFILES := main.o instructions.o initialize_stack.o instruction_performers.o \
+						debug.o
 CFLAGS   := -Werror -Wall -Wextra -g -I lib
 LIBFT_A  := lib/libft/libft.a
 HEADER   := push_swap.h

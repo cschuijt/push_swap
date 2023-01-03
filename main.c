@@ -23,8 +23,9 @@ int	main(int argc, char **argv)
 	push_swap = ft_calloc(sizeof(t_push_swap), 1);
 	if (!push_swap)
 		exit_perror("malloc error");
-	initialize_stack(push_swap, argv);
-	sort_stack(push_swap);
-	print_instructions(push_swap);
+	initialize_stack(push_swap, argv, argc);
+	// sort_stack(push_swap);
+	// print_instructions(push_swap);
+	print_stacks(push_swap);
 	return (0);
 }

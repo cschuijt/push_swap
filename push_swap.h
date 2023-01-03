@@ -68,9 +68,15 @@ typedef enum e_target {
 	target_double
 }	t_target;
 
-//== GENERAL FUNCTIONS ==//
+//== VALIDATIONS ==//
 
-void	initialize_stack(t_push_swap *push_swap, char **input);
+void	run_arg_validations(char *str);
+int		only_atoi_characters(char *str);
+
+//== PREPARING THE STACK ==//
+
+void	initialize_stack(t_push_swap *push_swap, char **input, int count);
+void	add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
 //== PUSH_SWAP INSTRUCTION HANDLERS ==//
 // These functions are how operations are called on the stack and logged
@@ -91,7 +97,16 @@ void	perform_rotate(t_item **stack);
 void	perform_reverse_rotate(t_item **stack);
 
 //== LOGGING AND PRINTING ==//
+// These functions keep track of performed operations and print them at the end
+// in the format specified by the subject.
 
 void	log_instruction(t_push_swap *push_swap, int action, int target);
+
+//== DEBUG FUNCTIONS ==//
+// These functions print what's happening under the hood into stdout.
+
+void	print_stacks(t_push_swap *push_swap);
+int		count_stack_items(t_item *stack);
+void	print_stack(t_item *stack);
 
 #endif
