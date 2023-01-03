@@ -101,6 +101,7 @@ void	perform_reverse_rotate(t_item **stack);
 // in the format specified by the subject.
 
 void	log_instruction(t_push_swap *push_swap, int action, int target);
+void	print_string_for_instruction(t_instruction *instruction);
 
 //== DEBUG FUNCTIONS ==//
 // These functions print what's happening under the hood into stdout.
@@ -108,5 +109,7 @@ void	log_instruction(t_push_swap *push_swap, int action, int target);
 void	print_stacks(t_push_swap *push_swap);
 int		count_stack_items(t_item *stack);
 void	print_stack(t_item *stack);
+int		count_instructions(t_instruction *instruction);
+void	print_instructions_debug(t_instruction *instruction);
 
 #endif
