@@ -171,4 +171,8 @@ void	exit_message(char *msg);
 // @brief Calls perror with msg, then exits the program with code 1.
 void	exit_perror(char *msg);
 
+// @brief Prints "Error\n" on the standard error, then exits the program
+// with code 1.
+void	ft_exit(void);
+
 #endif
