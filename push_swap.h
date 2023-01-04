@@ -70,46 +70,58 @@ typedef enum e_target {
 
 //== VALIDATIONS ==//
 
-void	run_arg_validations(char *str);
-int		only_atoi_characters(char *str);
+void			run_arg_validations(char *str);
+int				only_atoi_characters(char *str);
 
 //== PREPARING THE STACK ==//
 
-void	initialize_stack(t_push_swap *push_swap, char **input, int count);
-void	add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
+void			initialize_stack(t_push_swap *push_swap, char **input, \
+									int count);
+void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
 //== PUSH_SWAP INSTRUCTION HANDLERS ==//
 // These functions are how operations are called on the stack and logged
 // for printing later on.
 
-void	swap(t_push_swap *push_swap, int target);
-void	push(t_push_swap *push_swap, int target);
-void	rotate(t_push_swap *push_swap, int target);
-void	reverse_rotate(t_push_swap *push_swap, int target);
+void			swap(t_push_swap *push_swap, int target);
+void			push(t_push_swap *push_swap, int target);
+void			rotate(t_push_swap *push_swap, int target);
+void			reverse_rotate(t_push_swap *push_swap, int target);
 
 //== PUSH_SWAP INSTRUCTION EXECUTERS ==//
 // These functions actually perform the instructions, changing the order and
 // updating the pointers.
 
-void	perform_swap(t_item **stack);
-void	perform_push(t_item **src, t_item **dest);
-void	perform_rotate(t_item **stack);
-void	perform_reverse_rotate(t_item **stack);
+void			perform_swap(t_item **stack);
+void			perform_push(t_item **src, t_item **dest);
+void			perform_rotate(t_item **stack);
+void			perform_reverse_rotate(t_item **stack);
 
 //== LOGGING AND PRINTING ==//
 // These functions keep track of performed operations and print them at the end
 // in the format specified by the subject.
 
-void	log_instruction(t_push_swap *push_swap, int action, int target);
-void	print_string_for_instruction(t_instruction *instruction);
+void			log_instruction(t_push_swap *push_swap, int action, int target);
+void			print_string_for_instruction(t_instruction *instruction);
+
+//== STRUCT MANAGEMENT FUNCTIONS ==//
+// These functions copy and free the push_swap and stack structs.
+
+void			free_push_swap_struct(t_push_swap *push_swap);
+void			free_item_stack(t_item *stack);
+void			free_instruction_list(t_instruction *list);
+
+t_push_swap		*copy_push_swap_struct(t_push_swap *push_swap);
+t_item			*copy_item_stack(t_item *stack);
+t_instruction	*copy_instruction_list(t_instruction *list);
 
 //== DEBUG FUNCTIONS ==//
 // These functions print what's happening under the hood into stdout.
 
-void	print_stacks(t_push_swap *push_swap);
-int		count_stack_items(t_item *stack);
-void	print_stack(t_item *stack);
-int		count_instructions(t_instruction *instruction);
-void	print_instructions_debug(t_instruction *instruction);
+void			print_stacks(t_push_swap *push_swap);
+int				count_stack_items(t_item *stack);
+void			print_stack(t_item *stack);
+int				count_instructions(t_instruction *instruction);
+void			print_instructions_debug(t_instruction *instruction);
 
 #endif
