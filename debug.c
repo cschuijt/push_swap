@@ -58,7 +58,12 @@ void	print_stack(t_item *stack)
 {
 	while (stack)
 	{
-		ft_printf("%d", stack->value);
+		if (stack->offset > 0)
+			ft_printf("%d (+%d)", stack->value, stack->offset);
+		else if (stack->offset < 0)
+			ft_printf("%d (%d)", stack->value, stack->offset);
+		else
+			ft_printf("%d", stack->value);
 		if (stack->next)
 			ft_printf(", ");
 		stack = stack->next;

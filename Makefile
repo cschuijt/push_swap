@@ -1,6 +1,6 @@
 OBJFILES := main.o instructions.o initialize_stack.o instruction_performers.o \
 						debug.o instruction_printing.o freeing_functions.o \
-						copying_functions.o
+						copying_functions.o manual_sort.o
 CFLAGS   := -Werror -Wall -Wextra -g -I lib
 LIBFT_A  := lib/libft/libft.a
 HEADER   := push_swap.h
