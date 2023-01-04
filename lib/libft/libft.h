@@ -175,4 +175,6 @@ void	exit_perror(char *msg);
 // with code 1.
 void	ft_exit(void);
 
+void	*ft_calloc_exit(size_t nmemb, size_t size);
+
 #endif
