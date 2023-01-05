@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 		exit_perror("malloc error");
 	initialize_stack(push_swap, argv, argc);
 	// run_manual_sort(push_swap);
-	determine_offsets(push_swap);
+	determine_intended_indices(push_swap);
 	print_stacks(push_swap);
 	reverse_rotate(push_swap, target_a);
-	determine_offsets(push_swap);
+	determine_intended_indices(push_swap);
 	print_stacks(push_swap);
 	// sort_stack(push_swap);
 	// print_stacks(push_swap);

@@ -14,22 +14,23 @@
 
 void	run_manual_sort(t_push_swap *push_swap)
 {
-	determine_offsets(push_swap);
+	determine_intended_indices(push_swap);
 	print_stacks(push_swap);
 }
 
-void	determine_offsets(t_push_swap *push_swap)
+void	determine_intended_indices(t_push_swap *push_swap)
 {
 	t_item	*current;
+	t_item	*sorted_stack;
 
-	push_swap->sorted_stack = bubble_sort_stack(push_swap->stack_a);
+	sorted_stack = bubble_sort_stack(push_swap->stack_a);
 	current = push_swap->stack_a;
 	while (current)
 	{
-		current->offset = index_in_stack(current, push_swap->sorted_stack) - \
-							index_in_stack(current, push_swap->stack_a);
+		current->intended_index = index_in_stack(current, sorted_stack);
 		current = current->next;
 	}
+	free_item_stack(sorted_stack);
 }
 
 int	index_in_stack(t_item *item, t_item *stack)

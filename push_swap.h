@@ -18,7 +18,7 @@
 // An integer in one of the stacks.
 typedef struct s_item {
 	int				value;
-	int				offset;
+	int				intended_index;
 	struct s_item	*next;
 	struct s_item	*prev;
 }	t_item;
@@ -48,7 +48,6 @@ typedef struct s_push_swap {
 	t_item			*stack_a;
 	t_item			*stack_b;
 	t_instruction	*instructions;
-	t_item			*sorted_stack;
 }	t_push_swap;
 
 // An enum containing the different sorting operations available to us. Used
@@ -84,7 +83,7 @@ void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 //== MANUAL SORT ALGORITHM ==//
 
 void			run_manual_sort(t_push_swap *push_swap);
-void			determine_offsets(t_push_swap *push_swap);
+void			determine_intended_indices(t_push_swap *push_swap);
 int				index_in_stack(t_item *item, t_item *stack);
 t_item			*bubble_sort_stack(t_item *stack);
 

@@ -56,16 +56,20 @@ int	count_instructions(t_instruction *instruction)
 
 void	print_stack(t_item *stack)
 {
+	int	i;
+
+	i = 0;
 	while (stack)
 	{
-		if (stack->offset > 0)
-			ft_printf("%d (+%d)", stack->value, stack->offset);
-		else if (stack->offset < 0)
-			ft_printf("%d (%d)", stack->value, stack->offset);
+		if (stack->intended_index > i)
+			ft_printf("%d (+%d)", stack->value, stack->intended_index - i);
+		else if (stack->intended_index < i)
+			ft_printf("%d (%d)", stack->value, stack->intended_index - i);
 		else
 			ft_printf("%d", stack->value);
 		if (stack->next)
 			ft_printf(", ");
+		i++;
 		stack = stack->next;
 	}
 	ft_printf("\n");
