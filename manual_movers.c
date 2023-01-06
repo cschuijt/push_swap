@@ -28,3 +28,8 @@ void	move_offset_item(t_push_swap *push_swap, t_item *to_move)
 	else
 		move_by_push(push_swap, to_move, offset);
 }
+
+void	move_through_stack(t_push_swap *push_swap, int offset)
+{
+	
+}
