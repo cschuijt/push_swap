@@ -14,8 +14,40 @@
 
 void	run_manual_sort(t_push_swap *push_swap)
 {
-	determine_intended_indices(push_swap);
-	print_stacks(push_swap);
+	int		largest_offset;
+	t_item	*largest_offset_item;
+
+	while (1)
+	{
+		largest_offset_item = largest_offset_item(push_swap, &largest_offset);
+		if (!largest_offset_item)
+			return ;
+		move_offset_item(push_swap, largest_offset_item);
+	}
+}
+
+t_item	*largest_offset_item(t_push_swap *push_swap, int *largest_offset)
+{
+	t_item	*current;
+	t_item	*largest_offset_item;
+	int		index;
+
+	current = push_swap->stack_a;
+	*largest_offset = 0;
+	largest_offset_item = NULL;
+	index = 0;
+	while (current)
+	{
+		if (ft_abs(current->intended_index - index \
+			+ push_swap->rotation_offset) > *largest_offset)
+		{
+			*largest_offset = ft_abs(current->intended_index - index);
+			largest_offset_item = current;
+		}
+		current = current->next;
+		index++;
+	}
+	return (largest_offset_item);
 }
 
 void	determine_intended_indices(t_push_swap *push_swap)

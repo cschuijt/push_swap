@@ -46,6 +46,7 @@ void	add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item)
 		last->next = item;
 		item->prev = last;
 	}
+	push_swap->num_elements++;
 }
 
 void	run_arg_validations(char *str)

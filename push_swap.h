@@ -48,6 +48,8 @@ typedef struct s_push_swap {
 	t_item			*stack_a;
 	t_item			*stack_b;
 	t_instruction	*instructions;
+	int				rotation_offset;
+	int				num_elements;
 }	t_push_swap;
 
 // An enum containing the different sorting operations available to us. Used
