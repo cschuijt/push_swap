@@ -15,14 +15,14 @@
 void	run_manual_sort(t_push_swap *push_swap)
 {
 	int		largest_offset;
-	t_item	*largest_offset_item;
+	t_item	*offset_item;
 
 	while (1)
 	{
-		largest_offset_item = largest_offset_item(push_swap, &largest_offset);
-		if (!largest_offset_item)
+		offset_item = largest_offset_item(push_swap, &largest_offset);
+		if (!offset_item)
 			return ;
-		move_offset_item(push_swap, largest_offset_item);
+		move_offset_item(push_swap, offset_item);
 	}
 }
 
