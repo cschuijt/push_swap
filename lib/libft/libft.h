@@ -177,4 +177,6 @@ void	ft_exit(void);
 
 void	*ft_calloc_exit(size_t nmemb, size_t size);
 
+int		ft_abs(int i);
+
 #endif
