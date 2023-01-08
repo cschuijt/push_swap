@@ -1,6 +1,7 @@
 OBJFILES := main.o instructions.o initialize_stack.o instruction_performers.o \
 						debug.o instruction_printing.o freeing_functions.o \
-						copying_functions.o manual_sort.o
+						copying_functions.o manual_sort.o manual_movers.o \
+						stack_helpers.o debug_stack_printing.o
 CFLAGS   := -Werror -Wall -Wextra -g -I lib
 LIBFT_A  := lib/libft/libft.a
 HEADER   := push_swap.h
@@ -19,7 +20,7 @@ clean :
 fclean :
 	rm -f $(NAME) $(OBJFILES)
 
-$(LIBFT_A) :
+$(LIBFT_A) : lib/libft/libft.h
 	make -C lib/libft
 
 %.o : %.c $(HEADER)

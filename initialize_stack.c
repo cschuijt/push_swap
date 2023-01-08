@@ -27,6 +27,9 @@ void	initialize_stack(t_push_swap *push_swap, char **input, int count)
 		if (!item)
 			exit_perror("malloc error");
 		item->value = digit;
+		item->next = NULL;
+		item->prev = NULL;
+		item->intended_index = -1;
 		add_to_bottom_of_stack_a(push_swap, item);
 		i++;
 	}
@@ -37,14 +40,18 @@ void	add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item)
 	t_item	*last;
 
 	if (!push_swap->stack_a)
+	{
 		push_swap->stack_a = item;
+		item->next = item;
+		item->prev = item;
+	}
 	else
 	{
-		last = push_swap->stack_a;
-		while (last->next)
-			last = last->next;
+		last = push_swap->stack_a->prev;
 		last->next = item;
 		item->prev = last;
+		item->next = push_swap->stack_a;
+		push_swap->stack_a->prev = item;
 	}
 	push_swap->num_elements++;
 }

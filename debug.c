@@ -20,7 +20,7 @@ void	print_stacks(t_push_swap *push_swap)
 				count_stack_items(push_swap->stack_b), \
 				count_instructions(push_swap->instructions));
 	ft_printf("Stack a: ");
-	print_stack(push_swap->stack_a);
+	print_stack_indices(push_swap->stack_a_index_head, push_swap->stack_a);
 	ft_printf("Stack b: ");
 	print_stack(push_swap->stack_b);
 	ft_printf("Instructions: ");
@@ -30,59 +30,50 @@ void	print_stacks(t_push_swap *push_swap)
 
 int	count_stack_items(t_item *stack)
 {
-	int	items;
+	int		items;
+	t_item	*first;
 
 	items = 0;
+	first = stack;
 	while (stack)
 	{
 		items++;
 		stack = stack->next;
+		if (stack == first)
+			break ;
 	}
 	return (items);
 }
 
 int	count_instructions(t_instruction *instruction)
 {
-	int	instructions;
+	int				instructions;
+	t_instruction	*first;
 
 	instructions = 0;
+	first = instruction;
 	while (instruction)
 	{
 		instructions++;
 		instruction = instruction->next;
+		if (instruction == first)
+			break ;
 	}
 	return (instructions);
 }
 
-void	print_stack(t_item *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		if (stack->intended_index > i)
-			ft_printf("%d (+%d)", stack->value, stack->intended_index - i);
-		else if (stack->intended_index < i)
-			ft_printf("%d (%d)", stack->value, stack->intended_index - i);
-		else
-			ft_printf("%d", stack->value);
-		if (stack->next)
-			ft_printf(", ");
-		i++;
-		stack = stack->next;
-	}
-	ft_printf("\n");
-}
-
 void	print_instructions_debug(t_instruction *instruction)
 {
+	t_instruction	*first;
+
+	first = instruction;
 	while (instruction)
 	{
 		print_string_for_instruction(instruction);
-		if (instruction->next)
-			ft_printf(", ");
 		instruction = instruction->next;
+		if (instruction == first)
+			break ;
+		ft_printf(", ");
 	}
 	ft_printf("\n");
 }

@@ -32,6 +32,8 @@ void	free_item_stack(t_item *stack)
 		next = current->next;
 		free(current);
 		current = next;
+		if (current == stack)
+			break ;
 	}
 }
 

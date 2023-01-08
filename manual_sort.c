@@ -14,38 +14,39 @@
 
 void	run_manual_sort(t_push_swap *push_swap)
 {
-	int		largest_offset;
+	int		offset;
 	t_item	*offset_item;
 
 	while (1)
 	{
-		offset_item = largest_offset_item(push_swap, &largest_offset);
+		offset_item = largest_offset_item(push_swap, &offset);
 		if (!offset_item)
-			return ;
-		move_offset_item(push_swap, offset_item);
+			break ;
+		move_offset_item(push_swap, offset_item, offset);
 	}
+	move_through_stack(push_swap, push_swap->stack_a_index_head);
 }
 
 t_item	*largest_offset_item(t_push_swap *push_swap, int *largest_offset)
 {
 	t_item	*current;
 	t_item	*largest_offset_item;
-	int		index;
 
 	current = push_swap->stack_a;
 	*largest_offset = 0;
 	largest_offset_item = NULL;
-	index = 0;
 	while (current)
 	{
-		if (ft_abs(current->intended_index - index \
-			+ push_swap->rotation_offset) > *largest_offset)
+		if (ft_abs(current->intended_index - index_in_stack(current, \
+			push_swap->stack_a_index_head)) > *largest_offset)
 		{
-			*largest_offset = ft_abs(current->intended_index - index);
+			*largest_offset = ft_abs(current->intended_index - \
+			index_in_stack(current, push_swap->stack_a_index_head));
 			largest_offset_item = current;
 		}
 		current = current->next;
-		index++;
+		if (current == push_swap->stack_a)
+			break ;
 	}
 	return (largest_offset_item);
 }
@@ -56,11 +57,15 @@ void	determine_intended_indices(t_push_swap *push_swap)
 	t_item	*sorted_stack;
 
 	sorted_stack = bubble_sort_stack(push_swap->stack_a);
-	current = push_swap->stack_a;
+	push_swap->stack_a_index_head = stack_item_by_value(push_swap->stack_a, \
+														sorted_stack->value);
+	current = push_swap->stack_a_index_head;
 	while (current)
 	{
 		current->intended_index = index_in_stack(current, sorted_stack);
 		current = current->next;
+		if (current == push_swap->stack_a_index_head)
+			break ;
 	}
 	free_item_stack(sorted_stack);
 }
@@ -88,7 +93,7 @@ t_item	*bubble_sort_stack(t_item *stack)
 	current = new_stack;
 	while (current)
 	{
-		if (!current->next)
+		if (!current->next || current->next == new_stack)
 			break ;
 		else if (current->value < current->next->value)
 			current = current->next;

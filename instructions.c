@@ -29,11 +29,11 @@ void	push(t_push_swap *push_swap, int target)
 {
 	if (target == target_a)
 	{
-		perform_push(&push_swap->stack_a, &push_swap->stack_b);
+		perform_push(&push_swap->stack_b, &push_swap->stack_a);
 	}
 	if (target == target_b)
 	{
-		perform_push(&push_swap->stack_b, &push_swap->stack_a);
+		perform_push(&push_swap->stack_a, &push_swap->stack_b);
 	}
 	log_instruction(push_swap, action_push, target);
 }
@@ -67,21 +67,21 @@ void	reverse_rotate(t_push_swap *push_swap, int target)
 void	log_instruction(t_push_swap *push_swap, int action, int target)
 {
 	t_instruction	*instruction;
-	t_instruction	*last;
 
-	instruction = ft_calloc(sizeof(t_instruction), 1);
-	if (!instruction)
-		exit_perror("malloc error");
+	instruction = ft_calloc_exit(sizeof(t_instruction), 1);
 	instruction->action = action;
 	instruction->target = target;
 	if (!push_swap->instructions)
+	{
 		push_swap->instructions = instruction;
+		instruction->next = instruction;
+		instruction->prev = instruction;
+	}
 	else
 	{
-		last = push_swap->instructions;
-		while (last->next)
-			last = last->next;
-		last->next = instruction;
-		instruction->prev = last;
+		instruction->prev = push_swap->instructions->prev;
+		instruction->prev->next = instruction;
+		instruction->next = push_swap->instructions;
+		instruction->next->prev = instruction;
 	}
 }

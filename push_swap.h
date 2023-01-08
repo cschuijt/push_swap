@@ -47,6 +47,7 @@ typedef struct s_instruction {
 typedef struct s_push_swap {
 	t_item			*stack_a;
 	t_item			*stack_b;
+	t_item			*stack_a_index_head;
 	t_instruction	*instructions;
 	int				rotation_offset;
 	int				num_elements;
@@ -85,9 +86,26 @@ void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 //== MANUAL SORT ALGORITHM ==//
 
 void			run_manual_sort(t_push_swap *push_swap);
+t_item			*largest_offset_item(t_push_swap *push_swap, \
+										int *largest_offset);
+void			move_offset_item(t_push_swap *push_swap, t_item *to_move, \
+									int offset);
+
+void			move_through_stack(t_push_swap *push_swap, t_item *dest);
+void			move_to_and_swap(t_push_swap *push_swap, t_item *to_move);
+void			move_by_swap(t_push_swap *push_swap, t_item *to_move, \
+								int offset);
+void			move_by_push(t_push_swap *push_swap, t_item *to_move, \
+								int offset);
+
 void			determine_intended_indices(t_push_swap *push_swap);
 int				index_in_stack(t_item *item, t_item *stack);
 t_item			*bubble_sort_stack(t_item *stack);
+
+//== STACK HELPERS ==//
+// Generic helper functions for things to do with the stacks and structs.
+
+t_item			*stack_item_by_value(t_item *stack, int value);
 
 //== PUSH_SWAP INSTRUCTION HANDLERS ==//
 // These functions are how operations are called on the stack and logged
@@ -104,6 +122,7 @@ void			reverse_rotate(t_push_swap *push_swap, int target);
 
 void			perform_swap(t_item **stack);
 void			perform_push(t_item **src, t_item **dest);
+void			finalize_push(t_item **dest, t_item *to_push);
 void			perform_rotate(t_item **stack);
 void			perform_reverse_rotate(t_item **stack);
 
@@ -131,6 +150,7 @@ t_instruction	*copy_instruction_list(t_instruction *list);
 void			print_stacks(t_push_swap *push_swap);
 int				count_stack_items(t_item *stack);
 void			print_stack(t_item *stack);
+void			print_stack_indices(t_item *indexed_stack, t_item *stack);
 int				count_instructions(t_instruction *instruction);
 void			print_instructions_debug(t_instruction *instruction);
 

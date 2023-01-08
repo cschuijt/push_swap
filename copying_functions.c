@@ -19,6 +19,9 @@ t_push_swap	*copy_push_swap_struct(t_push_swap *push_swap)
 	new_push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
 	new_push_swap->stack_a = copy_item_stack(push_swap->stack_a);
 	new_push_swap->stack_b = copy_item_stack(push_swap->stack_b);
+	new_push_swap->stack_a_index_head = stack_item_by_value(\
+		new_push_swap->stack_a, push_swap->stack_a_index_head->value);
+	new_push_swap->rotation_offset = push_swap->rotation_offset;
 	new_push_swap->instructions = \
 	copy_instruction_list(push_swap->instructions);
 	return (new_push_swap);
@@ -26,17 +29,19 @@ t_push_swap	*copy_push_swap_struct(t_push_swap *push_swap)
 
 t_item	*copy_item_stack(t_item *stack)
 {
+	t_item	*original_start;
 	t_item	*start;
 	t_item	*previous;
 	t_item	*current;
 
 	if (!stack)
 		return (NULL);
+	original_start = stack;
 	start = ft_calloc_exit(sizeof(t_item), 1);
 	start->value = stack->value;
 	previous = start;
 	stack = stack->next;
-	while (stack)
+	while (stack && stack != original_start)
 	{
 		current = ft_calloc_exit(sizeof(t_item), 1);
 		current->value = stack->value;
@@ -45,6 +50,7 @@ t_item	*copy_item_stack(t_item *stack)
 		previous = current;
 		stack = stack->next;
 	}
+	current->next = start;
 	return (start);
 }
 
