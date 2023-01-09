@@ -48,6 +48,9 @@ t_item	*largest_offset_item(t_push_swap *push_swap, int *largest_offset)
 		if (current == push_swap->stack_a)
 			break ;
 	}
+	if (largest_offset_item)
+		*largest_offset = largest_offset_item->intended_index - \
+			index_in_stack(largest_offset_item, push_swap->stack_a_index_head);
 	return (largest_offset_item);
 }
 

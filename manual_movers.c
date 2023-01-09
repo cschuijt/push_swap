@@ -14,7 +14,9 @@
 
 void	move_offset_item(t_push_swap *push_swap, t_item *to_move, int offset)
 {
-	if (ft_abs(offset) < 3)
+	if (offset == 2 && to_move->next == push_swap->stack_a_index_head)
+		move_by_swap(push_swap, to_move, 1);
+	else if (ft_abs(offset) < 3)
 		move_by_swap(push_swap, to_move, offset);
 	else
 		move_by_push(push_swap, to_move, offset);

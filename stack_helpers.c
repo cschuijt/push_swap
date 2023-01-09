@@ -30,6 +30,11 @@ t_item	*stack_item_by_value(t_item *stack, int value)
 	return (NULL);
 }
 
+int		offset_from_intended_location(t_push_swap *push_swap, t_item *item)
+{
+	
+}
+
 void	fix_offset(t_push_swap *push_swap)
 {
 	if (ft_abs(push_swap->rotation_offset) > push_swap->num_elements / 2)
