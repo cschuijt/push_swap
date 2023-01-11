@@ -30,9 +30,37 @@ t_item	*stack_item_by_value(t_item *stack, int value)
 	return (NULL);
 }
 
-int		offset_from_intended_location(t_push_swap *push_swap, t_item *item)
+int	index_in_stack(t_item *item, t_item *stack)
 {
-	
+	int	index;
+
+	index = 0;
+	while (stack && item->value != stack->value)
+	{
+		index++;
+		stack = stack->next;
+	}
+	return (index);
+}
+
+int	offset_from_intended_location(t_push_swap *push_swap, t_item *item)
+{
+	int	offset;
+
+	offset = item->intended_index - \
+				index_in_stack(item, push_swap->stack_a_index_head);
+	if (ft_abs(offset) >= push_swap->num_elements / 2)
+	{
+		if (offset < 0)
+		{
+			offset = push_swap->num_elements + offset - 1;
+		}
+		else if (offset > 0)
+		{
+			offset = -push_swap->num_elements + offset + 1;
+		}
+	}
+	return (offset);
 }
 
 void	fix_offset(t_push_swap *push_swap)

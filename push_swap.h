@@ -92,13 +92,16 @@ void			move_offset_item(t_push_swap *push_swap, t_item *to_move, \
 									int offset);
 
 void			move_through_stack(t_push_swap *push_swap, t_item *dest);
-void			move_to_and_swap(t_push_swap *push_swap, t_item *to_move);
 void			move_by_swap(t_push_swap *push_swap, t_item *to_move, \
 								int offset);
 void			move_by_push(t_push_swap *push_swap, t_item *to_move, \
 								int offset);
 
 void			determine_intended_indices(t_push_swap *push_swap);
+int				offset_from_intended_location(t_push_swap *push_swap, \
+												t_item *item);
+t_item			*largest_offset_item_over_start(t_push_swap *push_swap, \
+												int *largest_offset);
 int				index_in_stack(t_item *item, t_item *stack);
 t_item			*bubble_sort_stack(t_item *stack);
 
