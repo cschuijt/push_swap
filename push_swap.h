@@ -88,13 +88,13 @@ void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 void			run_manual_sort(t_push_swap *push_swap);
 t_item			*largest_offset_item(t_push_swap *push_swap, \
 										int *largest_offset);
-void			move_offset_item(t_push_swap *push_swap, t_item *to_move, \
+int				move_item(t_push_swap *push_swap, t_item *to_move, \
 									int offset);
 
 void			move_through_stack(t_push_swap *push_swap, t_item *dest);
-void			move_by_swap(t_push_swap *push_swap, t_item *to_move, \
+int				move_by_swap(t_push_swap *push_swap, t_item *to_move, \
 								int offset);
-void			move_by_push(t_push_swap *push_swap, t_item *to_move, \
+int				move_by_push(t_push_swap *push_swap, t_item *to_move, \
 								int offset);
 
 void			determine_intended_indices(t_push_swap *push_swap);
@@ -116,8 +116,8 @@ t_item			*stack_item_by_value(t_item *stack, int value);
 
 void			swap(t_push_swap *push_swap, int target);
 void			push(t_push_swap *push_swap, int target);
-void			rotate(t_push_swap *push_swap, int target);
-void			reverse_rotate(t_push_swap *push_swap, int target);
+int				rotate(t_push_swap *push_swap, int target);
+int				reverse_rotate(t_push_swap *push_swap, int target);
 
 //== PUSH_SWAP INSTRUCTION EXECUTERS ==//
 // These functions actually perform the instructions, changing the order and

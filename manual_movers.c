@@ -5,19 +5,28 @@
 /*                                                     +:+                    */
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/01/06 16:29:27 by cschuijt      #+#    #+#                 */
-/*   Updated: 2023/01/06 16:29:27 by cschuijt      ########   odam.nl         */
+/*   Created: 2023/01/23 13:24:43 by cschuijt      #+#    #+#                 */
+/*   Updated: 2023/01/23 13:24:43 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	move_offset_item(t_push_swap *push_swap, t_item *to_move, int offset)
+int	move_item(t_push_swap *push_swap, t_item *to_move, int offset)
 {
-	if (ft_abs(offset) < 3)
-		move_by_swap(push_swap, to_move, offset);
-	else
-		move_by_push(push_swap, to_move, offset);
+	int	spaces_moved;
+	int	distance;
+
+	spaces_moved = 0;
+	distance = offset_from_intended_location(push_swap, to_move);
+	if (manual_move_benefit(push_swap, to_move, offset))
+	{
+		if (ft_abs(distance) > 3)
+			spaces_moved += move_by_swap(push_swap, to_move, distance, offset);
+		else
+			spaces_moved += move_by_push(push_swap, to_move, distance, offset);
+	}
+	return (spaces_moved);
 }
 
 void	move_through_stack(t_push_swap *push_swap, t_item *dest)
@@ -41,53 +50,5 @@ void	move_through_stack(t_push_swap *push_swap, t_item *dest)
 			rotate(push_swap, target_a);
 			index--;
 		}
-	}
-}
-
-void	move_by_swap(t_push_swap *push_swap, t_item *to_move, int offset)
-{
-	if (offset > 0)
-	{
-		while (offset > 0)
-		{
-			move_through_stack(push_swap, to_move);
-			swap(push_swap, target_a);
-			offset--;
-		}
-	}
-	else
-	{
-		while (offset < 0)
-		{
-			move_through_stack(push_swap, to_move->prev);
-			swap(push_swap, target_a);
-			offset++;
-		}
-	}
-}
-
-void	move_by_push(t_push_swap *push_swap, t_item *to_move, int offset)
-{
-	if (offset > 0)
-	{
-		move_through_stack(push_swap, to_move);
-		push(push_swap, target_b);
-		while (offset > 0)
-		{
-			rotate(push_swap, target_a);
-			offset--;
-		}
-		push(push_swap, target_a);
-	}
-	else
-	{
-		move_through_stack(push_swap, to_move);
-		push(push_swap, target_b);
-		while (offset < 0)
-		{
-			reverse_rotate(push_swap, target_a);
-			offset++;
-		}
-		push(push_swap, target_a);
 	}
 }
