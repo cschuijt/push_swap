@@ -1,7 +1,7 @@
 OBJFILES := main.o instructions.o initialize_stack.o instruction_performers.o \
 						debug.o instruction_printing.o freeing_functions.o \
 						copying_functions.o manual_sort.o manual_movers.o \
-						stack_helpers.o debug_stack_printing.o
+						stack_helpers.o debug_stack_printing.o manual_sort_prioritization.o
 CFLAGS   := -Werror -Wall -Wextra -g -I lib
 LIBFT_A  := lib/libft/libft.a
 HEADER   := push_swap.h

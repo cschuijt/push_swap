@@ -95,6 +95,17 @@ void			move_through_stack(t_push_swap *push_swap, t_item *dest);
 int				move_by_swap(t_push_swap *push_swap, t_item *to_move, \
 								int offset);
 int				move_by_push(t_push_swap *push_swap, t_item *to_move, \
+								int distance, int offset);
+int				move_by_swap_forward(t_push_swap *push_swap, t_item *to_move, \
+										int distance);
+int				move_by_swap_backward(t_push_swap *push_swap, t_item *to_move, \
+										int distance);
+
+int				manual_move_benefit(t_push_swap *push_swap, t_item *to_move, \
+									int length_offset);
+int				is_nested_move(t_push_swap *push_swap, int distance, \
+								int offset);
+int				update_offset(t_push_swap *push_swap, t_item *to_move, \
 								int offset);
 
 void			determine_intended_indices(t_push_swap *push_swap);
