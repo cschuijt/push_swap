@@ -59,7 +59,7 @@ int	update_offset(t_push_swap *push_swap, t_item *to_move, int offset)
 	distance = offset_from_intended_location(push_swap, to_move) + offset;
 	if (distance > 0)
 	{
-		return (offset + 1);
+		return (offset);
 	}
 	else
 	{

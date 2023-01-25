@@ -14,24 +14,18 @@
 
 int	move_item(t_push_swap *push_swap, t_item *to_move, int offset)
 {
-	int	moves;
 	int	distance;
 
-	moves = 0;
 	distance = offset_from_intended_location(push_swap, to_move) + offset;
-	if (manual_move_benefit(push_swap, to_move, offset))
+	if (ft_abs(distance) < 3)
 	{
-		if (ft_abs(distance) > 3)
-		{
-			if (distance > 0)
-				moves += move_by_swap_forward(push_swap, to_move, distance);
-			else
-				moves += move_by_swap_backward(push_swap, to_move, distance);
-		}
+		if (distance > 0)
+			return (move_by_swap_forward(push_swap, to_move, distance));
 		else
-			moves += move_by_push(push_swap, to_move, distance, offset);
+			return (move_by_swap_backward(push_swap, to_move, distance));
 	}
-	return (moves);
+	else
+		return (move_by_push(push_swap, to_move, distance, offset));
 }
 
 void	move_through_stack(t_push_swap *push_swap, t_item *dest)
@@ -95,26 +89,27 @@ int	move_by_swap_backward(t_push_swap *push_swap, t_item *to_move, \
 int	move_by_push(t_push_swap *push_swap, t_item *to_move, \
 					int distance, int offset)
 {
-	int	total_distance;
+	int	moved;
 
-	total_distance = distance;
+	moved = 0;
 	move_through_stack(push_swap, to_move);
 	push(push_swap, target_b);
-	while (distance != 0)
+	while (moved != distance)
 	{
 		if (manual_move_benefit(push_swap, push_swap->stack_a, offset) && \
-			is_nested_move(push_swap, distance, offset))
+			is_nested_move(push_swap, moved, offset))
 		{
-			distance += move_item(push_swap, push_swap->stack_a, \
+			moved += move_item(push_swap, push_swap->stack_a, \
 						update_offset(push_swap, push_swap->stack_a, offset));
 		}
 		else
 		{
-			if (distance > 0)
-				distance += rotate(push_swap, target_a);
+			if (distance - moved > 0)
+				moved += rotate(push_swap, target_a);
 			else
-				distance += reverse_rotate(push_swap, target_a);
+				moved += reverse_rotate(push_swap, target_a);
 		}
 	}
-	return (total_distance);
+	push(push_swap, target_a);
+	return (moved);
 }

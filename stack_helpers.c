@@ -32,14 +32,20 @@ t_item	*stack_item_by_value(t_item *stack, int value)
 
 int	index_in_stack(t_item *item, t_item *stack)
 {
-	int	index;
+	int		index;
+	t_item	*stack_start;
 
 	index = 0;
+	stack_start = stack;
 	while (stack && item->value != stack->value)
 	{
 		index++;
 		stack = stack->next;
+		if (stack == stack_start)
+			break ;
 	}
+	if (stack->value != item->value)
+		exit_message("Looking for item not in stack");
 	return (index);
 }
 

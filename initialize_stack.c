@@ -12,20 +12,20 @@
 
 #include "push_swap.h"
 
-void	initialize_stack(t_push_swap *push_swap, char **input, int count)
+void	initialize_stack(t_push_swap *push_swap, char *input)
 {
-	int		i;
+	char	**input_array;
 	t_item	*item;
+	int		i;
 	int		digit;
 
-	i = 1;
-	while (i < count)
+	input_array = ft_split(input, ' ');
+	i = 0;
+	while (input_array[i])
 	{
-		run_arg_validations(input[i]);
-		digit = ft_atoi(input[i]);
-		item = ft_calloc(sizeof(t_item), 1);
-		if (!item)
-			exit_perror("malloc error");
+		run_arg_validations(input_array[i]);
+		digit = ft_atoi(input_array[i]);
+		item = ft_calloc_exit(sizeof(t_item), 1);
 		item->value = digit;
 		item->next = NULL;
 		item->prev = NULL;
