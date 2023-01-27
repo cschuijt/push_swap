@@ -58,7 +58,6 @@ int	move_by_swap_forward(t_push_swap *push_swap, t_item *to_move, \
 	int	moves;
 
 	moves = -1;
-	move_through_stack(push_swap, to_move);
 	while (distance != 0)
 	{
 		move_through_stack(push_swap, to_move);
@@ -75,7 +74,6 @@ int	move_by_swap_backward(t_push_swap *push_swap, t_item *to_move, \
 	int	moves;
 
 	moves = 0;
-	move_through_stack(push_swap, to_move);
 	while (distance != 0)
 	{
 		move_through_stack(push_swap, to_move->prev);
