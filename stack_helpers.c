@@ -45,7 +45,7 @@ int	index_in_stack(t_item *item, t_item *stack)
 			break ;
 	}
 	if (stack->value != item->value)
-		exit_message("Looking for item not in stack");
+		return (0);
 	return (index);
 }
 

@@ -95,7 +95,7 @@ int	move_by_push(t_push_swap *push_swap, t_item *to_move, \
 	while (moved != distance)
 	{
 		if (manual_move_benefit(push_swap, push_swap->stack_a, offset) && \
-			is_nested_move(push_swap, moved, offset))
+			is_nested_move(push_swap, distance - moved, offset))
 		{
 			moved += move_item(push_swap, push_swap->stack_a, \
 						update_offset(push_swap, push_swap->stack_a, offset));

@@ -20,12 +20,15 @@ void	run_manual_sort(t_push_swap *push_swap)
 	while (1)
 	{
 		offset_item = largest_offset_item_over_start(push_swap, &offset);
-		if (!offset_item)
+		if (offset_item)
+			move_item(push_swap, offset_item, -1);
+		else
+		{
 			offset_item = largest_offset_item(push_swap, &offset);
-		if (!offset_item)
-			break ;
-		move_item(push_swap, offset_item, 0);
-		print_stacks(push_swap);
+			if (!offset_item)
+				break ;
+			move_item(push_swap, offset_item, 0);
+		}
 	}
 	move_through_stack(push_swap, push_swap->stack_a_index_head);
 }
