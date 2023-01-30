@@ -85,8 +85,7 @@ void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 //== MANUAL SORT ALGORITHM ==//
 
 void			run_manual_sort(t_push_swap *push_swap);
-t_item			*largest_offset_item(t_push_swap *push_swap, \
-										int *largest_offset);
+t_item			*largest_offset_item(t_push_swap *push_swap);
 int				move_item(t_push_swap *push_swap, t_item *to_move, \
 									int offset);
 
@@ -110,8 +109,7 @@ int				update_offset(t_push_swap *push_swap, t_item *to_move, \
 void			determine_intended_indices(t_push_swap *push_swap);
 int				offset_from_intended_location(t_push_swap *push_swap, \
 												t_item *item);
-t_item			*largest_offset_item_over_start(t_push_swap *push_swap, \
-												int *largest_offset);
+t_item			*largest_offset_item_over_start(t_push_swap *push_swap);
 int				index_in_stack(t_item *item, t_item *stack);
 t_item			*bubble_sort_stack(t_item *stack);
 

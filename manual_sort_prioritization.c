@@ -45,9 +45,13 @@ int	is_nested_move(t_push_swap *push_swap, int distance, int offset)
 {
 	int	to_move;
 
+	// if (push_swap->stack_a->intended_index == 0)
+	// 	return (0);
 	to_move = offset_from_intended_location(push_swap, push_swap->stack_a) \
 				+ offset;
-	if (to_move * distance <= 0 || to_move > distance)
+	if (to_move >= distance)
+		return (0);
+	if (to_move * distance <= 0)
 		return (0);
 	return (1);
 }
