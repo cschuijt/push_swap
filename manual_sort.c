@@ -14,39 +14,42 @@
 
 void	run_manual_sort(t_push_swap *push_swap)
 {
-	int		offset;
 	t_item	*offset_item;
 
 	while (1)
 	{
-		offset_item = largest_offset_item_over_start(push_swap, &offset);
-		if (!offset_item)
-			offset_item = largest_offset_item(push_swap, &offset);
-		if (!offset_item)
-			break ;
-		move_offset_item(push_swap, offset_item, offset);
+		offset_item = largest_offset_item_over_start(push_swap);
+		if (offset_item)
+			move_item(push_swap, offset_item, -1);
+		else
+		{
+			offset_item = largest_offset_item(push_swap);
+			if (!offset_item)
+				break ;
+			move_item(push_swap, offset_item, 0);
+		}
 	}
 	move_through_stack(push_swap, push_swap->stack_a_index_head);
 }
 
-t_item	*largest_offset_item_over_start(t_push_swap *push_swap, \
-										int *largest_offset)
+t_item	*largest_offset_item_over_start(t_push_swap *push_swap)
 {
 	t_item	*current;
 	t_item	*largest_offset_item;
+	int		largest_offset;
 	int		current_offset;
 
 	current = push_swap->stack_a;
-	*largest_offset = 0;
+	largest_offset = 0;
 	largest_offset_item = NULL;
 	while (current)
 	{
 		current_offset = offset_from_intended_location(push_swap, current);
-		if (ft_abs(current_offset) > ft_abs(*largest_offset) && current_offset \
+		if (ft_abs(current_offset) > ft_abs(largest_offset) && current_offset \
 			!= current->intended_index - index_in_stack(current, \
 			push_swap->stack_a_index_head))
 		{
-			*largest_offset = offset_from_intended_location(push_swap, current);
+			largest_offset = offset_from_intended_location(push_swap, current);
 			largest_offset_item = current;
 		}
 		current = current->next;
@@ -56,20 +59,21 @@ t_item	*largest_offset_item_over_start(t_push_swap *push_swap, \
 	return (largest_offset_item);
 }
 
-t_item	*largest_offset_item(t_push_swap *push_swap, int *largest_offset)
+t_item	*largest_offset_item(t_push_swap *push_swap)
 {
 	t_item	*current;
 	t_item	*largest_offset_item;
+	int		largest_offset;
 
 	current = push_swap->stack_a;
-	*largest_offset = 0;
+	largest_offset = 0;
 	largest_offset_item = NULL;
 	while (current)
 	{
 		if (ft_abs(offset_from_intended_location(push_swap, current)) > \
-			ft_abs(*largest_offset))
+			ft_abs(largest_offset))
 		{
-			*largest_offset = offset_from_intended_location(push_swap, current);
+			largest_offset = offset_from_intended_location(push_swap, current);
 			largest_offset_item = current;
 		}
 		current = current->next;

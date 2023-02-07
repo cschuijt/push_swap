@@ -20,12 +20,10 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (1);
-	else if (argc == 2)
-		return (0);
-	push_swap = ft_calloc(sizeof(t_push_swap), 1);
-	if (!push_swap)
-		exit_perror("malloc error");
-	initialize_stack(push_swap, argv, argc);
+	if (argc != 2)
+		return (1);
+	push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
+	initialize_stack(push_swap, argv[1]);
 	determine_intended_indices(push_swap);
 	// print_stacks(push_swap);
 	run_manual_sort(push_swap);

@@ -32,14 +32,20 @@ t_item	*stack_item_by_value(t_item *stack, int value)
 
 int	index_in_stack(t_item *item, t_item *stack)
 {
-	int	index;
+	int		index;
+	t_item	*stack_start;
 
 	index = 0;
+	stack_start = stack;
 	while (stack && item->value != stack->value)
 	{
 		index++;
 		stack = stack->next;
+		if (stack == stack_start)
+			break ;
 	}
+	if (stack->value != item->value)
+		return (0);
 	return (index);
 }
 
@@ -49,33 +55,12 @@ int	offset_from_intended_location(t_push_swap *push_swap, t_item *item)
 
 	offset = item->intended_index - \
 				index_in_stack(item, push_swap->stack_a_index_head);
-	if (ft_abs(offset) >= push_swap->num_elements / 2)
+	if (ft_abs(offset) > push_swap->num_elements / 2)
 	{
 		if (offset < 0)
-		{
 			offset = push_swap->num_elements + offset - 1;
-		}
 		else if (offset > 0)
-		{
 			offset = -push_swap->num_elements + offset + 1;
-		}
 	}
 	return (offset);
-}
-
-void	fix_offset(t_push_swap *push_swap)
-{
-	if (ft_abs(push_swap->rotation_offset) > push_swap->num_elements / 2)
-	{
-		if (push_swap->rotation_offset > 0)
-		{
-			push_swap->rotation_offset = push_swap->rotation_offset - \
-											push_swap->num_elements;
-		}
-		else
-		{
-			push_swap->rotation_offset = push_swap->num_elements + \
-											push_swap->rotation_offset;
-		}
-	}
 }

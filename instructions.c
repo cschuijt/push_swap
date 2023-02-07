@@ -38,7 +38,7 @@ void	push(t_push_swap *push_swap, int target)
 	log_instruction(push_swap, action_push, target);
 }
 
-void	rotate(t_push_swap *push_swap, int target)
+int	rotate(t_push_swap *push_swap, int target)
 {
 	if (target == target_a || target == target_double)
 	{
@@ -49,9 +49,10 @@ void	rotate(t_push_swap *push_swap, int target)
 		perform_rotate(&push_swap->stack_b);
 	}
 	log_instruction(push_swap, action_rotate, target);
+	return (1);
 }
 
-void	reverse_rotate(t_push_swap *push_swap, int target)
+int	reverse_rotate(t_push_swap *push_swap, int target)
 {
 	if (target == target_a || target == target_double)
 	{
@@ -62,6 +63,7 @@ void	reverse_rotate(t_push_swap *push_swap, int target)
 		perform_reverse_rotate(&push_swap->stack_b);
 	}
 	log_instruction(push_swap, action_reverse_rotate, target);
+	return (-1);
 }
 
 void	log_instruction(t_push_swap *push_swap, int action, int target)
