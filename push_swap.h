@@ -82,40 +82,20 @@ int				only_atoi_characters(char *str);
 void			initialize_stack(t_push_swap *push_swap, char *input);
 void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
-//== MANUAL SORT ALGORITHM ==//
+//== BUCKET SORTING FUNCTIONS ==//
 
-void			run_manual_sort(t_push_swap *push_swap);
-t_item			*largest_offset_item(t_push_swap *push_swap);
-int				move_item(t_push_swap *push_swap, t_item *to_move, \
-									int offset);
+//== ACTUAL SORTING STUFF ==//
 
-void			move_through_stack(t_push_swap *push_swap, t_item *dest);
-int				move_by_swap(t_push_swap *push_swap, t_item *to_move, \
-								int offset);
-int				move_by_push(t_push_swap *push_swap, t_item *to_move, \
-								int distance, int offset);
-int				move_by_swap_forward(t_push_swap *push_swap, t_item *to_move, \
-										int distance);
-int				move_by_swap_backward(t_push_swap *push_swap, t_item *to_move, \
-										int distance);
 
-int				manual_move_benefit(t_push_swap *push_swap, t_item *to_move, \
-									int length_offset);
-int				is_nested_move(t_push_swap *push_swap, int distance, \
-								int offset);
-int				update_offset(t_push_swap *push_swap, t_item *to_move, \
-								int offset);
-
-void			determine_intended_indices(t_push_swap *push_swap);
-int				offset_from_intended_location(t_push_swap *push_swap, \
-												t_item *item);
-t_item			*largest_offset_item_over_start(t_push_swap *push_swap);
-int				index_in_stack(t_item *item, t_item *stack);
-t_item			*bubble_sort_stack(t_item *stack);
 
 //== STACK HELPERS ==//
 // Generic helper functions for things to do with the stacks and structs.
 
+void			determine_intended_indices(t_push_swap *push_swap);
+int				offset_from_intended_location(t_push_swap *push_swap, \
+												t_item *item);
+int				index_in_stack(t_item *item, t_item *stack);
+t_item			*bubble_sort_stack(t_item *stack);
 t_item			*stack_item_by_value(t_item *stack, int value);
 
 //== PUSH_SWAP INSTRUCTION HANDLERS ==//
