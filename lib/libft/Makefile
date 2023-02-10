@@ -9,7 +9,8 @@ OBJFILES := ft_atoi.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o \
 					ft_lstdelone.o ft_lstiter.o ft_lstlast.o ft_lstmap.o ft_lstnew.o \
 					ft_lstsize.o ft_putnbr_base.o ft_printf.o print_functions.o \
 					get_next_line.o get_next_line_utils.o ft_strchrc.o exit_message.o \
-					exit_perror.o free_array.o ft_exit.o ft_calloc_exit.o ft_abs.o
+					exit_perror.o free_array.o ft_exit.o ft_calloc_exit.o ft_abs.o \
+					ft_copy_array.o
 FLAGS = -Werror -Wall -Wextra
 NAME = libft.a
 

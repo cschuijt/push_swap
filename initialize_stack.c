@@ -12,14 +12,12 @@
 
 #include "push_swap.h"
 
-void	initialize_stack(t_push_swap *push_swap, char *input)
+void	initialize_stack(t_push_swap *push_swap, char **input_array)
 {
-	char	**input_array;
 	t_item	*item;
 	int		i;
 	int		digit;
 
-	input_array = ft_split(input, ' ');
 	i = 0;
 	while (input_array[i])
 	{

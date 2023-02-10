@@ -179,4 +179,6 @@ void	*ft_calloc_exit(size_t nmemb, size_t size);
 
 int		ft_abs(int i);
 
+char	**ft_copy_array(char **array, int start, int end);
+
 #endif

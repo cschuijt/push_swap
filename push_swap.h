@@ -79,7 +79,7 @@ int				only_atoi_characters(char *str);
 
 //== PREPARING THE STACK ==//
 
-void			initialize_stack(t_push_swap *push_swap, char *input);
+void			initialize_stack(t_push_swap *push_swap, char **input);
 void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
 //== BUCKET SORTING FUNCTIONS ==//
