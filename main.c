@@ -21,9 +21,7 @@ int	main(int argc, char **argv)
 	char		**input_array;
 
 	if (argc == 1)
-		return (1);
-	if (argc != 2)
-		return (1);
+		exit_message("Please provide a list of unique integers as arguments");
 	push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
 	if (argc == 2)
 		input_array = ft_split(argv[1], ' ');
