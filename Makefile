@@ -1,29 +1,75 @@
-OBJFILES := main.o instructions.o initialize_stack.o instruction_performers.o \
-						debug.o instruction_printing.o freeing_functions.o \
-						copying_functions.o manual_sort.o manual_movers.o \
-						stack_helpers.o debug_stack_printing.o manual_sort_prioritization.o
-CFLAGS   := -Werror -Wall -Wextra -g -I lib
-LIBFT_A  := lib/libft/libft.a
-HEADER   := push_swap.h
-NAME     := push_swap
+NAME 			    := push_swap
+CC				    := gcc
+COMPIL_FLAGS	?= -Wall -Wextra -Werror -g
+LINKFLAGS 		?= -I include -I lib/libft
 
-$(NAME) : $(OBJFILES) $(LIBFT_A) $(HEADER)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJFILES) $(LIBFT_A)
+SRC_FILES	    :=	main.c \
+									copying_functions.c \
+									debug_stack_printing.c \
+									debug.c \
+									freeing_functions.c \
+									initialize_stack.c \
+									instruction_performers.c \
+									instruction_printing.c \
+									instructions.c \
+									manual_movers.c \
+									manual_sort_prioritization.c \
+									manual_sort.c \
+									stack_helpers.c
+    
+OBJ_FILES	    :=	$(SRC_FILES:.c=.o)
+SRC_DIR	      :=	src/
+OBJ_DIR	      :=	obj/
+SOURCES	      :=	$(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJS	        :=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+HEADER        :=  include/push_swap.h
+LIBFT_A       :=  lib/libft/libft.a
+
 
 all : $(NAME)
 
-re : fclean all
+$(NAME) : $(OBJS) $(LIBFT_A)
+	@printf "$(COMP_HEADER)$(C_LGREEN)$@$(COMP_AFTER)"
+	@$(CC) $(OBJS) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) $(LIBFT_A)
+	@printf "$(COMP_DONE)"
 
-clean :
-	rm -f $(OBJFILES) libft.a
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADER) | $(OBJ_DIR)
+	@printf "$(COMP_HEADER)$(notdir $<)$(COMP_AFTER)"
+	@$(CC) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) -c $<
+	@printf "$(COMP_DONE)"
 
-fclean :
-	rm -f $(NAME) $(OBJFILES)
+obj :
+	@mkdir $(OBJ_DIR)
 
-$(LIBFT_A) : lib/libft/libft.h
+$(OBJ_DIR) :
+	@mkdir $(OBJ_DIR)
+
+$(LIBFT_A) :
+	@printf "$(C_GREEN)Compiling $(C_CYAN)LIBFT \n$(C_RESET)"
 	make -C lib/libft
 
-%.o : %.c $(HEADER)
-	$(CC) -c $(CFLAGS) -o $@ $<
+clean:
+	@$(RM) -rf $(OBJ_DIR)
+	@printf "$(C_RED)Files cleaned\n$(C_RESET)"
 
-.PHONY : clean fclean re
+fclean: clean
+	@rm -f $(NAME)
+
+re: fclean all
+
+.phony : clean fclean all re
+
+# Fancy shmancy
+
+COMP_HEADER = $(C_ORANGE)Compiling: $(C_CYAN)$(C_BOLD)
+COMP_AFTER  = $(C_RESET)$(C_ORANGE)... $(C_RESET)
+COMP_DONE   = $(C_GREEN)(Done!)$(C_RESET)\n
+
+C_RESET	    = \e[0m
+C_BOLD	    = \e[1m
+
+C_RED		    = \e[38;2;255;0;0m
+C_ORANGE	  = \e[38;2;255;128;0m
+C_LGREEN	  = \e[38;2;128;255;128m
+C_GREEN		  = \e[38;2;0;255;0m
+C_CYAN		  = \e[38;2;0;255;255m
