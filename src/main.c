@@ -25,24 +25,7 @@ int	main(int argc, char **argv)
 	push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
 	initialize_stack(push_swap, argv[1]);
 	determine_intended_indices(push_swap);
-	// print_stacks(push_swap);
-	run_manual_sort(push_swap);
-	// print_stacks(push_swap);
+	determine_longest_increasing_subsequence(push_swap->stack_a);
 	print_instructions(push_swap->instructions);
 	return (0);
-}
-
-void	print_instructions(t_instruction *instruction)
-{
-	t_instruction	*first;
-
-	first = instruction;
-	while (instruction)
-	{
-		print_string_for_instruction(instruction);
-		ft_printf("\n");
-		instruction = instruction->next;
-		if (instruction == first)
-			break ;
-	}
 }

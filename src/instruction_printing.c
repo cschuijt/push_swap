@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+void	print_instructions(t_instruction *instruction)
+{
+	t_instruction	*first;
+
+	first = instruction;
+	while (instruction)
+	{
+		print_string_for_instruction(instruction);
+		ft_printf("\n");
+		instruction = instruction->next;
+		if (instruction == first)
+			break ;
+	}
+}
+
 void	print_string_for_instruction(t_instruction *instruction)
 {
 	if (instruction->action == action_swap)

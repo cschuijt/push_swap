@@ -64,3 +64,20 @@ int	offset_from_intended_location(t_push_swap *push_swap, t_item *item)
 	}
 	return (offset);
 }
+
+size_t	stack_element_count(t_item *stack)
+{
+	t_item	*start;
+	size_t	i;
+
+	start = stack;
+	i = 0;
+	while (stack)
+	{
+		i++;
+		stack = stack->next;
+		if (stack == start)
+			break ;
+	}
+	return (i);
+}
