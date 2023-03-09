@@ -15,7 +15,9 @@ SRC_FILES	    :=	main.c \
 									manual_movers.c \
 									manual_sort_prioritization.c \
 									manual_sort.c \
-									stack_helpers.c
+									stack_helpers.c \
+									lis.c \
+									patience_sort.c
     
 OBJ_FILES	    :=	$(SRC_FILES:.c=.o)
 SRC_DIR	      :=	src/

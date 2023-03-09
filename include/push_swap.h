@@ -82,6 +82,16 @@ int				only_atoi_characters(char *str);
 void			initialize_stack(t_push_swap *push_swap, char *input);
 void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
+//== PATIENCE SORT ALGORITHM ==//
+
+t_item			*determine_lis_start(t_push_swap *push_swap);
+size_t			lis_length_for_start(t_item *stack, long num_elements);
+t_item			**elements_in_lis(t_item *stack, size_t num_elements);
+int				item_in_lis(t_item *item, t_item **lis);
+
+void			perform_patience_sort(t_push_swap *push_swap);
+void			push_elements_not_in_lis(t_push_swap *push_swap, t_item **lis);
+
 //== MANUAL SORT ALGORITHM ==//
 
 void			run_manual_sort(t_push_swap *push_swap);

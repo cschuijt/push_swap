@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 t_item	*determine_lis_start(t_push_swap *push_swap)
 {
@@ -83,4 +84,18 @@ t_item	**elements_in_lis(t_item *stack, size_t num_elements)
 			break ;
 	}
 	return (lis_array);
+}
+
+int	item_in_lis(t_item *item, t_item **lis)
+{
+	size_t	i;
+
+	i = 0;
+	while (lis[i])
+	{
+		if (lis[i] == item)
+			return (1);
+		i++;
+	}
+	return (0);
 }

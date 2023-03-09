@@ -25,7 +25,8 @@ int	main(int argc, char **argv)
 	push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
 	initialize_stack(push_swap, argv[1]);
 	determine_intended_indices(push_swap);
-	determine_longest_increasing_subsequence(push_swap->stack_a);
-	print_instructions(push_swap->instructions);
+	perform_patience_sort(push_swap);
+	// print_stacks(push_swap);
+	// print_instructions(push_swap->instructions);
 	return (0);
 }
