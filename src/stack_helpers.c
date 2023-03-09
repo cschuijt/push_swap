@@ -49,21 +49,21 @@ int	index_in_stack(t_item *item, t_item *stack)
 	return (index);
 }
 
-int	offset_from_intended_location(t_push_swap *push_swap, t_item *item)
-{
-	int	offset;
+// int	offset_from_intended_location(t_push_swap *push_swap, t_item *item)
+// {
+// 	int	offset;
 
-	offset = item->intended_index - \
-				index_in_stack(item, push_swap->stack_a_index_head);
-	if (ft_abs(offset) > push_swap->num_elements / 2)
-	{
-		if (offset < 0)
-			offset = push_swap->num_elements + offset - 1;
-		else if (offset > 0)
-			offset = -push_swap->num_elements + offset + 1;
-	}
-	return (offset);
-}
+// 	offset = item->intended_index - \ //
+// 				index_in_stack(item, push_swap->stack_a_index_head);
+// 	if (ft_abs(offset) > push_swap->num_elements / 2)
+// 	{
+// 		if (offset < 0)
+// 			offset = push_swap->num_elements + offset - 1;
+// 		else if (offset > 0)
+// 			offset = -push_swap->num_elements + offset + 1;
+// 	}
+// 	return (offset);
+// }
 
 size_t	stack_element_count(t_item *stack)
 {

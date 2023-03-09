@@ -21,6 +21,7 @@ typedef struct s_item {
 	int				intended_index;
 	struct s_item	*next;
 	struct s_item	*prev;
+	struct s_item	*prev_in_lis;
 }	t_item;
 
 // A single instruction performed on the stack and logged for printing. Values
@@ -50,7 +51,7 @@ typedef struct s_push_swap {
 	t_item			*stack_a_index_head;
 	t_instruction	*instructions;
 	int				rotation_offset;
-	long			num_elements;
+	size_t			num_elements;
 }	t_push_swap;
 
 // An enum containing the different sorting operations available to us. Used
@@ -87,10 +88,12 @@ void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 t_item			*determine_lis_start(t_push_swap *push_swap);
 size_t			lis_length_for_start(t_item *stack, long num_elements);
 t_item			**elements_in_lis(t_item *stack, size_t num_elements);
+void			follow_pointers_for_lis_array(t_item **stack_array);
 int				item_in_lis(t_item *item, t_item **lis);
 
 void			perform_patience_sort(t_push_swap *push_swap);
-void			push_elements_not_in_lis(t_push_swap *push_swap, t_item **lis);
+void			push_items_not_in_lis(t_push_swap *push_swap, t_item **lis);
+void			move_a_to_item(t_push_swap *push_swap, t_item *item);
 
 //== MANUAL SORT ALGORITHM ==//
 
@@ -136,6 +139,14 @@ void			swap(t_push_swap *push_swap, int target);
 void			push(t_push_swap *push_swap, int target);
 int				rotate(t_push_swap *push_swap, int target);
 int				reverse_rotate(t_push_swap *push_swap, int target);
+
+// These functions are intended to quickly perform the same instruction
+// multiple times in a row.
+
+void			push_n(t_push_swap *push_swap, int target, size_t count);
+void			rotate_n(t_push_swap *push_swap, int target, size_t count);
+void			reverse_rotate_n(t_push_swap *push_swap, int target, \
+									size_t count);
 
 //== PUSH_SWAP INSTRUCTION EXECUTERS ==//
 // These functions actually perform the instructions, changing the order and

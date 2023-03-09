@@ -12,9 +12,7 @@ SRC_FILES	    :=	main.c \
 									instruction_performers.c \
 									instruction_printing.c \
 									instructions.c \
-									manual_movers.c \
-									manual_sort_prioritization.c \
-									manual_sort.c \
+									instructions_multiple.c \
 									stack_helpers.c \
 									lis.c \
 									patience_sort.c

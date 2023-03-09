@@ -64,26 +64,47 @@ size_t	lis_length_for_start(t_item *stack, long num_elements)
 	return (i);
 }
 
-t_item	**elements_in_lis(t_item *stack, size_t num_elements)
+t_item	**elements_in_lis(t_item *input, size_t num_elements)
 {
-	t_item	*stack_start;
-	t_item	**lis_array;
+	t_item	*input_start;
+	t_item	**stack_array;
 	size_t	i;
 
-	stack_start = stack;
-	lis_array = ft_calloc(sizeof(t_item *), num_elements);
-	i = 0;
-	while (stack)
+	input_start = input;
+	stack_array = ft_calloc(sizeof(t_item *), num_elements);
+	while (input)
 	{
 		i = 0;
-		while (lis_array[i] && lis_array[i]->value < stack->value)
+		while (stack_array[i] && stack_array[i]->value < input->value)
 			i++;
-		lis_array[i] = stack;
-		stack = stack->next;
-		if (stack == stack_start)
+		stack_array[i] = input;
+		if (i)
+			input->prev_in_lis = stack_array[i - 1];
+		else
+			input->prev_in_lis = NULL;
+		input = input->next;
+		if (input == input_start)
 			break ;
 	}
-	return (lis_array);
+	follow_pointers_for_lis_array(stack_array);
+	return (stack_array);
+}
+
+void	follow_pointers_for_lis_array(t_item **stack_array)
+{
+	size_t	i;
+	t_item	*current;
+
+	i = 0;
+	while (stack_array[i + 1])
+		i++;
+	current = stack_array[i];
+	while (i)
+	{
+		i--;
+		stack_array[i] = current->prev_in_lis;
+		current = current->prev_in_lis;
+	}
 }
 
 int	item_in_lis(t_item *item, t_item **lis)
