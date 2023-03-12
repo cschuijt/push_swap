@@ -37,6 +37,8 @@ OBJ_DIR	      		:=	obj/
 OBJS	        		:=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 CHECKER_OBJS	 		:=	$(addprefix $(OBJ_DIR), $(CHECKER_OBJ_FILES))
 HEADER        		:=  include/push_swap.h
+CHECKER_HEADER    :=  include/checker.h
+SHARED_HEADER     :=  include/push_swap_shared.h
 LIBFT_A       		:=  lib/libft/libft.a
 LIBFT_H       		:=  lib/libft/libft.h
 
@@ -50,10 +52,10 @@ $(NAME) : $(OBJS) $(LIBFT_A)
 
 $(CHECKER_NAME) : $(CHECKER_OBJS) $(LIBFT_A)
 	@printf "$(COMP_HEADER)$(C_LGREEN)$@$(COMP_AFTER)"
-	@$(CC) $(OBJS) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) $(LIBFT_A)
+	@$(CC) $(CHECKER_OBJS) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) $(LIBFT_A)
 	@printf "$(COMP_DONE)"
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADER) | $(OBJ_DIR)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADER) $(SHARED_HEADER) | $(OBJ_DIR)
 	@printf "$(COMP_HEADER)$(notdir $<)$(COMP_AFTER)"
 	@$(CC) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) -c $<
 	@printf "$(COMP_DONE)"
