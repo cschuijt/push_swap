@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-void	print_instructions(t_instruction *instruction);
-
 int	main(int argc, char **argv)
 {
 	t_push_swap	*push_swap;

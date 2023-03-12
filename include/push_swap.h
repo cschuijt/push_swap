@@ -159,6 +159,7 @@ void			perform_reverse_rotate(t_item **stack);
 
 void			log_instruction(t_push_swap *push_swap, int action, int target);
 void			print_string_for_instruction(t_instruction *instruction);
+void			print_instructions(t_push_swap *push_swap);
 
 //== STRUCT MANAGEMENT FUNCTIONS ==//
 // These functions copy and free the push_swap and stack structs.
