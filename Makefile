@@ -19,6 +19,7 @@ SRC_FILES	    		:=	copying_functions.c \
 											patience_sort_optimal_moves.c \
 											patience_sort_utils.c \
 											patience_sort.c \
+											small_sort.c \
 											validations.c
 
 CHECKER_SRC   		:=  checker_main.c \

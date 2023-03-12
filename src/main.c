@@ -23,7 +23,10 @@ int	main(int argc, char **argv)
 		initialize_stack(push_swap, argv[1]);
 	else
 		initialize_stack_separate_args(push_swap, argc, argv);
-	perform_patience_sort(push_swap);
+	if (push_swap->num_elements == 3)
+		perform_hardcoded_3_sort(push_swap);
+	else
+		perform_patience_sort(push_swap);
 	print_instructions(push_swap->instructions);
 	free_push_swap_struct(push_swap);
 	return (0);

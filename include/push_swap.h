@@ -94,6 +94,17 @@ void			initialize_stack_separate_args(t_push_swap *push_swap, \
 												int argc, char **argv);
 void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
+//== HARDCODED SORT ==//
+// These functions sort a three-number stack in the optimal amount
+// of moves, since it is the only size where patience sort
+// does not manage to sort within acceptable limits.
+
+void			perform_hardcoded_3_sort(t_push_swap *push_swap);
+void			hardcode_sort_upper_half(t_push_swap *push_swap, t_item *first, \
+											t_item *middle, t_item *last);
+void			hardcode_sort_lower_half(t_push_swap *push_swap, t_item *first, \
+											t_item *middle, t_item *last);
+
 //== PATIENCE SORT ALGORITHM ==//
 
 t_item			*determine_lis_start(t_push_swap *push_swap);
