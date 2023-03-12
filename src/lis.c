@@ -46,7 +46,7 @@ size_t	lis_length_for_start(t_item *stack, long num_elements)
 	size_t	i;
 
 	stack_start = stack;
-	piles = ft_calloc(sizeof(t_item *), num_elements);
+	piles = ft_calloc(sizeof(t_item *), num_elements + 1);
 	while (stack)
 	{
 		i = 0;
@@ -71,7 +71,7 @@ t_item	**elements_in_lis(t_item *input, size_t num_elements)
 	size_t	i;
 
 	input_start = input;
-	stack_array = ft_calloc(sizeof(t_item *), num_elements);
+	stack_array = ft_calloc(sizeof(t_item *), num_elements + 1);
 	while (input)
 	{
 		i = 0;
