@@ -41,12 +41,16 @@ void	free_instruction_list(t_instruction *list)
 {
 	t_instruction	*current;
 	t_instruction	*next;
+	t_instruction	*start;
 
 	current = list;
+	start = current;
 	while (current)
 	{
 		next = current->next;
 		free(current);
 		current = next;
+		if (current == start)
+			break ;
 	}
 }
