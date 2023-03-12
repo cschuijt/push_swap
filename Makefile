@@ -5,7 +5,6 @@ COMPIL_FLAGS			?=  -Wall -Wextra -Werror -g
 LINKFLAGS 				?=  -I include -I lib/libft
 
 SRC_FILES	    		:=	copying_functions.c \
-											debug.c \
 											freeing_functions.c \
 											initialize_stack.c \
 											instruction_performers.c \
