@@ -1,38 +1,53 @@
-NAME 			    := push_swap
-CC				    := gcc
-COMPIL_FLAGS	?= -Wall -Wextra -Werror -g
-LINKFLAGS 		?= -I include -I lib/libft
+NAME 			    		:=  push_swap
+CHECKER_NAME      :=  checker
+CC				    		:=  gcc
+COMPIL_FLAGS			?=  -Wall -Wextra -Werror -g
+LINKFLAGS 				?=  -I include -I lib/libft
 
-SRC_FILES	    :=	copying_functions.c \
-									debug.c \
-									freeing_functions.c \
-									initialize_stack.c \
-									instruction_performers.c \
-									instruction_printing.c \
-									instructions_multiple.c \
-									instructions.c \
-									lis.c \
-									main.c \
-									patience_sort_distance.c \
-									patience_sort_merging.c \
-									patience_sort_optimal_moves.c \
-									patience_sort_utils.c \
-									patience_sort.c \
-									validations.c
+SRC_FILES	    		:=	copying_functions.c \
+											debug.c \
+											freeing_functions.c \
+											initialize_stack.c \
+											instruction_performers.c \
+											instruction_printing.c \
+											instructions_multiple.c \
+											instructions.c \
+											lis.c \
+											main.c \
+											patience_sort_distance.c \
+											patience_sort_merging.c \
+											patience_sort_optimal_moves.c \
+											patience_sort_utils.c \
+											patience_sort.c \
+											validations.c
+
+CHECKER_SRC   		:=  checker_main.c \
+											freeing_functions.c \
+											initialize_stack.c \
+											instruction_performers.c \
+											instruction_printing.c \
+											instructions.c \
+											validations.c
     
-OBJ_FILES	    :=	$(SRC_FILES:.c=.o)
-SRC_DIR	      :=	src/
-OBJ_DIR	      :=	obj/
-SOURCES	      :=	$(addprefix $(SRC_DIR), $(SRC_FILES))
-OBJS	        :=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER        :=  include/push_swap.h
-LIBFT_A       :=  lib/libft/libft.a
-LIBFT_H       :=  lib/libft/libft.h
+OBJ_FILES			    :=	$(SRC_FILES:.c=.o)
+CHECKER_OBJ_FILES :=	$(CHECKER_SRC:.c=.o)
+SRC_DIR	      		:=	src/
+OBJ_DIR	      		:=	obj/
+OBJS	        		:=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+CHECKER_OBJS	 		:=	$(addprefix $(OBJ_DIR), $(CHECKER_OBJ_FILES))
+HEADER        		:=  include/push_swap.h
+LIBFT_A       		:=  lib/libft/libft.a
+LIBFT_H       		:=  lib/libft/libft.h
 
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT_A)
+	@printf "$(COMP_HEADER)$(C_LGREEN)$@$(COMP_AFTER)"
+	@$(CC) $(OBJS) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) $(LIBFT_A)
+	@printf "$(COMP_DONE)"
+
+$(CHECKER_NAME) : $(CHECKER_OBJS) $(LIBFT_A)
 	@printf "$(COMP_HEADER)$(C_LGREEN)$@$(COMP_AFTER)"
 	@$(CC) $(OBJS) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) $(LIBFT_A)
 	@printf "$(COMP_DONE)"
@@ -49,15 +64,15 @@ $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
 $(LIBFT_A) : $(LIBFT_H)
-	@printf "$(C_GREEN)Compiling $(C_CYAN)LIBFT \n$(C_RESET)"
+	@printf "$(C_GREEN)Compiling $(C_CYAN)$(notdir $@) \n$(C_RESET)"
 	make -C lib/libft
 
 clean:
-	@$(RM) -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@printf "$(C_RED)Files cleaned\n$(C_RESET)"
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(CHECKER_NAME)
 
 re: fclean all
 
