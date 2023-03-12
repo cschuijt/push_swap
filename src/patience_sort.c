@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 void	perform_patience_sort(t_push_swap *push_swap)
 {
@@ -19,6 +20,7 @@ void	perform_patience_sort(t_push_swap *push_swap)
 	lis = elements_in_lis(determine_lis_start(push_swap), \
 							push_swap->num_elements);
 	push_items_not_in_lis(push_swap, lis);
+	free(lis);
 	merge_back_into_a(push_swap);
 	rotate_to_front(push_swap);
 }

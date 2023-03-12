@@ -31,6 +31,7 @@ void	initialize_stack(t_push_swap *push_swap, char *input)
 		add_to_bottom_of_stack_a(push_swap, item);
 		i++;
 	}
+	free_array((void **) input_array);
 }
 
 void	initialize_stack_separate_args(t_push_swap *push_swap, \
