@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_atol.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/06 12:25:38 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/08 19:42:52 by cschuijt      ########   odam.nl         */
+/*   Created: 2023/03/12 14:27:52 by cschuijt      #+#    #+#                 */
+/*   Updated: 2023/03/12 14:27:52 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atol(char *str)
 {
-	long			i;
-	unsigned int	minuses;
+	long long	i;
+	size_t		minuses;
 
 	i = 0;
 	minuses = 0;
@@ -35,5 +35,5 @@ int	ft_atoi(const char *str)
 	}
 	if (minuses > 0)
 		i = i * -1;
-	return ((int) i);
+	return ((long) i);
 }

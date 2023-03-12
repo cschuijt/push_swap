@@ -79,12 +79,15 @@ typedef enum e_move_pattern {
 
 //== VALIDATIONS ==//
 
-void			run_arg_validations(char *str);
+void			run_arg_validations(char *str, t_push_swap *push_swap);
 int				only_atoi_characters(char *str);
+int				number_already_in_stack(int number, t_item *stack);
 
 //== PREPARING THE STACK ==//
 
 void			initialize_stack(t_push_swap *push_swap, char *input);
+void			initialize_stack_separate_args(t_push_swap *push_swap, \
+												int argc, char **argv);
 void			add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item);
 
 //== PATIENCE SORT ALGORITHM ==//
@@ -122,11 +125,6 @@ size_t			*calculate_move_patterns(t_push_swap *push_swap, \
 size_t			optimal_move_count(t_push_swap *push_swap, t_item *position_b);
 int				optimal_move_pattern(t_push_swap *push_swap, \
 										t_item *position_b);
-
-//== STACK HELPERS ==//
-// Generic helper functions for things to do with the stacks and structs.
-
-t_item			*stack_item_by_value(t_item *stack, int value);
 
 //== PUSH_SWAP INSTRUCTION HANDLERS ==//
 // These functions are how operations are called on the stack and logged

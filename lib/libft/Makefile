@@ -10,7 +10,7 @@ OBJFILES := ft_atoi.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o \
 					ft_lstsize.o ft_putnbr_base.o ft_printf.o print_functions.o \
 					get_next_line.o get_next_line_utils.o ft_strchrc.o exit_message.o \
 					exit_perror.o free_array.o ft_exit.o ft_calloc_exit.o ft_abs.o \
-					ft_min.o ft_max.o
+					ft_min.o ft_max.o ft_atol.o ft_isspace.o
 FLAGS = -Werror -Wall -Wextra
 NAME = libft.a
 

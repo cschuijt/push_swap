@@ -11,22 +11,40 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 void	initialize_stack(t_push_swap *push_swap, char *input)
 {
 	char	**input_array;
 	t_item	*item;
-	int		i;
-	int		digit;
+	size_t	i;
 
 	input_array = ft_split(input, ' ');
 	i = 0;
 	while (input_array[i])
 	{
-		run_arg_validations(input_array[i]);
-		digit = ft_atoi(input_array[i]);
+		run_arg_validations(input_array[i], push_swap);
 		item = ft_calloc_exit(sizeof(t_item), 1);
-		item->value = digit;
+		item->value = ft_atoi(input_array[i]);
+		item->next = NULL;
+		item->prev = NULL;
+		add_to_bottom_of_stack_a(push_swap, item);
+		i++;
+	}
+}
+
+void	initialize_stack_separate_args(t_push_swap *push_swap, \
+										int argc, char **argv)
+{
+	t_item	*item;
+	size_t	i;
+
+	i = 1;
+	while (argv[i] && (int) i < argc)
+	{
+		run_arg_validations(argv[i], push_swap);
+		item = ft_calloc_exit(sizeof(t_item), 1);
+		item->value = ft_atoi(argv[i]);
 		item->next = NULL;
 		item->prev = NULL;
 		add_to_bottom_of_stack_a(push_swap, item);
@@ -53,26 +71,4 @@ void	add_to_bottom_of_stack_a(t_push_swap *push_swap, t_item *item)
 		push_swap->stack_a->prev = item;
 	}
 	push_swap->num_elements++;
-}
-
-void	run_arg_validations(char *str)
-{
-	if (!only_atoi_characters(str))
-		ft_exit();
-	if (ft_strlen(str) > 11)
-		ft_exit();
-	if (ft_strlen(str) == 11 && str[0] != '-' && str[0] != '+')
-		ft_exit();
-	// TODO check for arguments that go beyond max/min int
-}
-
-int	only_atoi_characters(char *str)
-{
-	while (*str)
-	{
-		if ((*str < '0' || *str > '9') && *str != '+' && *str != '-')
-			return (0);
-		str++;
-	}
-	return (1);
 }

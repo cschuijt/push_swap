@@ -181,4 +181,7 @@ int		ft_abs(int i);
 size_t	ft_min(size_t num, ...);
 size_t	ft_max(size_t num, ...);
 
+long	ft_atol(char *str);
+int		ft_isspace(int c);
+
 #endif

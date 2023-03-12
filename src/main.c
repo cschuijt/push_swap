@@ -19,14 +19,13 @@ int	main(int argc, char **argv)
 	t_push_swap	*push_swap;
 
 	if (argc == 1)
-		return (1);
-	if (argc != 2)
-		return (1);
+		ft_exit();
 	push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
-	initialize_stack(push_swap, argv[1]);
-	// determine_intended_indices(push_swap);
+	if (argc == 2)
+		initialize_stack(push_swap, argv[1]);
+	else
+		initialize_stack_separate_args(push_swap, argc, argv);
 	perform_patience_sort(push_swap);
-	// print_stacks(push_swap);
-	// print_instructions(push_swap->instructions);
+	print_instructions(push_swap->instructions);
 	return (0);
 }

@@ -17,7 +17,8 @@ SRC_FILES	    :=	copying_functions.c \
 									patience_sort_merging.c \
 									patience_sort_optimal_moves.c \
 									patience_sort_utils.c \
-									patience_sort.c
+									patience_sort.c \
+									validations.c
     
 OBJ_FILES	    :=	$(SRC_FILES:.c=.o)
 SRC_DIR	      :=	src/
