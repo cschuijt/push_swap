@@ -13,8 +13,9 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "../lib/libft/libft.h"
+# include "push_swap_shared.h"
 
-
+void	parse_instruction(t_push_swap *push_swap, char *input);
+int		validate_result(t_push_swap *push_swap);
 
 #endif
