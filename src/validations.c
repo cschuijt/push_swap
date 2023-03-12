@@ -19,7 +19,7 @@ void	run_arg_validations(char *str, t_push_swap *push_swap)
 
 	if (!ft_strlen(str))
 		ft_exit();
-	if (!only_atoi_characters(str))
+	if (!proper_atoi_string_format(str))
 		ft_exit();
 	if (ft_strlen(str) > 11)
 		ft_exit();
@@ -48,13 +48,30 @@ int	number_already_in_stack(int number, t_item *stack)
 	return (0);
 }
 
-int	only_atoi_characters(char *str)
+int	proper_atoi_string_format(char *str)
 {
-	while (*str)
+	size_t	i;
+	size_t	numbers;
+
+	i = 0;
+	while (str[i])
 	{
-		if ((*str < '0' || *str > '9') && *str != '+' && *str != '-')
+		if ((str[i] < '0' || str[i] > '9') && str[i] != '+' && str[i] != '-')
 			return (0);
-		str++;
+		i++;
 	}
+	i = 0;
+	while (str[i] && (str[i] == '+' || str[i] == '-'))
+		i++;
+	numbers = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		numbers++;
+		i++;
+	}
+	if (!numbers)
+		return (0);
 	return (1);
 }

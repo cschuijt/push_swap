@@ -82,7 +82,7 @@ typedef enum e_move_pattern {
 // program if they are not.
 
 void			run_arg_validations(char *str, t_push_swap *push_swap);
-int				only_atoi_characters(char *str);
+int				proper_atoi_string_format(char *str);
 int				number_already_in_stack(int number, t_item *stack);
 
 //== PREPARING THE STACK ==//
