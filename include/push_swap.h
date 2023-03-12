@@ -78,12 +78,16 @@ typedef enum e_move_pattern {
 }	t_move_pattern;
 
 //== VALIDATIONS ==//
+// These functions ensure the input is valid, and exit the
+// program if they are not.
 
 void			run_arg_validations(char *str, t_push_swap *push_swap);
 int				only_atoi_characters(char *str);
 int				number_already_in_stack(int number, t_item *stack);
 
 //== PREPARING THE STACK ==//
+// These functions take the input and turn it into a valid
+// circular doubly linked list in the push_swap struct.
 
 void			initialize_stack(t_push_swap *push_swap, char *input);
 void			initialize_stack_separate_args(t_push_swap *push_swap, \
@@ -159,7 +163,7 @@ void			perform_reverse_rotate(t_item **stack);
 
 void			log_instruction(t_push_swap *push_swap, int action, int target);
 void			print_string_for_instruction(t_instruction *instruction);
-void			print_instructions(t_push_swap *push_swap);
+void			print_instructions(t_instruction *instructions);
 
 //== STRUCT MANAGEMENT FUNCTIONS ==//
 // These functions copy and free the push_swap and stack structs.
