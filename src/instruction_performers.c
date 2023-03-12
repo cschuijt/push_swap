@@ -67,10 +67,12 @@ void	finalize_push(t_item **dest, t_item *to_push)
 
 void	perform_rotate(t_item **stack)
 {
-	*stack = (*stack)->next;
+	if (*stack)
+		*stack = (*stack)->next;
 }
 
 void	perform_reverse_rotate(t_item **stack)
 {
-	*stack = (*stack)->prev;
+	if (*stack)
+		*stack = (*stack)->prev;
 }
