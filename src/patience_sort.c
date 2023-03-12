@@ -20,6 +20,9 @@ void	perform_patience_sort(t_push_swap *push_swap)
 							push_swap->num_elements);
 	push_items_not_in_lis(push_swap, lis);
 	print_stacks(push_swap);
+	merge_back_into_a(push_swap);
+	rotate_to_front(push_swap);
+	print_stacks(push_swap);
 }
 
 void	push_items_not_in_lis(t_push_swap *push_swap, t_item **lis)
@@ -52,26 +55,12 @@ t_item	*nearest_item_not_in_lis(t_push_swap *push_swap, t_item **lis)
 	return (NULL);
 }
 
-void	move_a_to_item(t_push_swap *push_swap, t_item *item)
+void	rotate_to_front(t_push_swap *push_swap)
 {
-	t_item	*item_next;
-	t_item	*item_prev;
-	size_t	distance;
+	t_item	*current;
 
-	if (push_swap->stack_a == item)
-		return ;
-	item_next = push_swap->stack_a->next;
-	item_prev = push_swap->stack_a->prev;
-	distance = 1;
-	while (item_next != push_swap->stack_a)
-	{
-		if (item_next == item)
-			return (rotate_n(push_swap, target_a, distance));
-		else if (item_prev == item)
-			return (reverse_rotate_n(push_swap, target_a, distance));
-		item_next = item_next->next;
-		item_prev = item_prev->prev;
-		distance++;
-	}
-	exit_message("Tried to move to item not in stack");
+	current = push_swap->stack_a;
+	while (current->prev->value < current->value)
+		current = current->prev;
+	move_a_to_item(push_swap, current);
 }

@@ -15,7 +15,11 @@ SRC_FILES	    :=	main.c \
 									instructions_multiple.c \
 									stack_helpers.c \
 									lis.c \
-									patience_sort.c
+									patience_sort.c \
+									patience_sort_utils.c \
+									patience_sort_distance.c \
+									patience_sort_merging.c \
+									patience_sort_optimal_moves.c
     
 OBJ_FILES	    :=	$(SRC_FILES:.c=.o)
 SRC_DIR	      :=	src/
@@ -24,6 +28,7 @@ SOURCES	      :=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS	        :=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 HEADER        :=  include/push_swap.h
 LIBFT_A       :=  lib/libft/libft.a
+LIBFT_H       :=  lib/libft/libft.h
 
 
 all : $(NAME)
@@ -44,7 +49,7 @@ obj :
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
-$(LIBFT_A) :
+$(LIBFT_A) : $(LIBFT_H)
 	@printf "$(C_GREEN)Compiling $(C_CYAN)LIBFT \n$(C_RESET)"
 	make -C lib/libft
 
