@@ -29,7 +29,6 @@ void	initialize_stack(t_push_swap *push_swap, char *input)
 		item->value = digit;
 		item->next = NULL;
 		item->prev = NULL;
-		item->intended_index = -1;
 		add_to_bottom_of_stack_a(push_swap, item);
 		i++;
 	}

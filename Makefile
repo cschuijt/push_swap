@@ -3,23 +3,23 @@ CC				    := gcc
 COMPIL_FLAGS	?= -Wall -Wextra -Werror -g
 LINKFLAGS 		?= -I include -I lib/libft
 
-SRC_FILES	    :=	main.c \
+SRC_FILES	    :=	\
 									copying_functions.c \
-									debug_stack_printing.c \
 									debug.c \
 									freeing_functions.c \
 									initialize_stack.c \
 									instruction_performers.c \
 									instruction_printing.c \
-									instructions.c \
 									instructions_multiple.c \
-									stack_helpers.c \
+									instructions.c \
 									lis.c \
-									patience_sort.c \
-									patience_sort_utils.c \
+									main.c \
 									patience_sort_distance.c \
 									patience_sort_merging.c \
-									patience_sort_optimal_moves.c
+									patience_sort_utils.c \
+									patience_sort.c \
+									patience_sort_optimal_moves.c \
+									stack_helpers.c 
     
 OBJ_FILES	    :=	$(SRC_FILES:.c=.o)
 SRC_DIR	      :=	src/

@@ -19,9 +19,6 @@ t_push_swap	*copy_push_swap_struct(t_push_swap *push_swap)
 	new_push_swap = ft_calloc_exit(sizeof(t_push_swap), 1);
 	new_push_swap->stack_a = copy_item_stack(push_swap->stack_a);
 	new_push_swap->stack_b = copy_item_stack(push_swap->stack_b);
-	new_push_swap->stack_a_index_head = stack_item_by_value(\
-		new_push_swap->stack_a, push_swap->stack_a_index_head->value);
-	new_push_swap->rotation_offset = push_swap->rotation_offset;
 	new_push_swap->instructions = \
 	copy_instruction_list(push_swap->instructions);
 	return (new_push_swap);

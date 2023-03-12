@@ -20,12 +20,28 @@ void	print_stacks(t_push_swap *push_swap)
 				count_stack_items(push_swap->stack_b), \
 				count_instructions(push_swap->instructions));
 	ft_printf("Stack a: ");
-	print_stack_indices(push_swap->stack_a_index_head, push_swap->stack_a);
+	print_stack(push_swap->stack_a);
 	ft_printf("Stack b: ");
 	print_stack(push_swap->stack_b);
 	ft_printf("Instructions: ");
 	print_instructions_debug(push_swap->instructions);
 	ft_printf("==========================\n");
+}
+
+void	print_stack(t_item *stack)
+{
+	t_item	*first;
+
+	first = stack;
+	while (stack)
+	{
+		ft_printf("%d", stack->value);
+		stack = stack->next;
+		if (stack == first)
+			break ;
+		ft_printf(", ");
+	}
+	ft_printf("\n");
 }
 
 int	count_stack_items(t_item *stack)

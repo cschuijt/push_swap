@@ -18,7 +18,6 @@
 // An integer in one of the stacks.
 typedef struct s_item {
 	int				value;
-	int				intended_index;
 	struct s_item	*next;
 	struct s_item	*prev;
 	struct s_item	*prev_in_lis;
@@ -48,9 +47,7 @@ typedef struct s_instruction {
 typedef struct s_push_swap {
 	t_item			*stack_a;
 	t_item			*stack_b;
-	t_item			*stack_a_index_head;
 	t_instruction	*instructions;
-	int				rotation_offset;
 	size_t			num_elements;
 }	t_push_swap;
 
@@ -126,37 +123,6 @@ size_t			optimal_move_count(t_push_swap *push_swap, t_item *position_b);
 int				optimal_move_pattern(t_push_swap *push_swap, \
 										t_item *position_b);
 
-//== MANUAL SORT ALGORITHM ==//
-
-void			run_manual_sort(t_push_swap *push_swap);
-t_item			*largest_offset_item(t_push_swap *push_swap);
-int				move_item(t_push_swap *push_swap, t_item *to_move, \
-									int offset);
-
-void			move_through_stack(t_push_swap *push_swap, t_item *dest);
-int				move_by_swap(t_push_swap *push_swap, t_item *to_move, \
-								int offset);
-int				move_by_push(t_push_swap *push_swap, t_item *to_move, \
-								int distance, int offset);
-int				move_by_swap_forward(t_push_swap *push_swap, t_item *to_move, \
-										int distance);
-int				move_by_swap_backward(t_push_swap *push_swap, t_item *to_move, \
-										int distance);
-
-int				manual_move_benefit(t_push_swap *push_swap, t_item *to_move, \
-									int length_offset);
-int				is_nested_move(t_push_swap *push_swap, int distance, \
-								int offset);
-int				update_offset(t_push_swap *push_swap, t_item *to_move, \
-								int offset);
-
-void			determine_intended_indices(t_push_swap *push_swap);
-int				offset_from_intended_location(t_push_swap *push_swap, \
-												t_item *item);
-t_item			*largest_offset_item_over_start(t_push_swap *push_swap);
-int				index_in_stack(t_item *item, t_item *stack);
-t_item			*bubble_sort_stack(t_item *stack);
-
 //== STACK HELPERS ==//
 // Generic helper functions for things to do with the stacks and structs.
 
@@ -213,7 +179,6 @@ t_instruction	*copy_instruction_list(t_instruction *list);
 void			print_stacks(t_push_swap *push_swap);
 int				count_stack_items(t_item *stack);
 void			print_stack(t_item *stack);
-void			print_stack_indices(t_item *indexed_stack, t_item *stack);
 int				count_instructions(t_instruction *instruction);
 void			print_instructions_debug(t_instruction *instruction);
 
